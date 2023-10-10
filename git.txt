@@ -1,0 +1,8 @@
+<<com
+git remote add (origin?) marph625 https://github.com/marph625
+git add file
+git commit -m "message"
+git push .
+git branch -M main
+git push -u origin main
+com
