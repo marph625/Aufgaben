@@ -9,13 +9,21 @@ field = [" ",
          "1", "2", "3",
          "4", "5", "6",
          "7", "8", "9"]
+"""
+
+COLOR = 
+"""
+# Set ANSI-Colors
+GREEN = '\033[92m'
+RED = '\033[91m'
+RESET = '\033[0m'
 
 
 # Print field
 def field_print():
-    print(field[1] + "|" + field[2] + "|" + field[3] + "\n" +
-          field[4] + "|" + field[5] + "|" + field[6] + "\n" +
-          field[7] + "|" + field[8] + "|" + field[9])
+    print(field[1] + "|" + field[2] + "|" + field[3] + RESET + "\n" +
+          field[4] + "|" + field[5] + "|" + field[6] + RESET + "\n" +
+          field[7] + "|" + field[8] + "|" + field[9] + RESET)
 
 
 # Player Input and error checking
@@ -26,6 +34,7 @@ def player_input():
         # End the game prematurely by entering 'q'
         if player_turn == "q":
             game_active = False
+            print("Program successfully shut down.")
             return
         try:
             player_turn = int(player_turn)
@@ -64,9 +73,9 @@ def check_win():
     if field[1] == field[4] == field[7]:
         return field[1]
     if field[2] == field[5] == field[8]:
-        return field[4]
+        return field[2]
     if field[3] == field[6] == field[9]:
-        return field[7]
+        return field[3]
     # Check for diagonals
     if field[1] == field[5] == field[9]:
         return field[5]
@@ -97,7 +106,7 @@ while game_active:
     turn = player_input()
     if turn:
         # overwrite field with turn
-        field[turn] = player_current
+        field[turn] = GREEN + "X" + RESET if player_current == "X" else RED + "O" + RESET
         # print field
         field_print()
         # check if player won
